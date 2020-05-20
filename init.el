@@ -29,12 +29,12 @@
 
 ;;; Backups
 ;; Make backups directory in ~/.emacs.d/
-(defvar --backup-directory (concat user-emacs-directory "backups"))
-(if (not (file-exists-p --backup-directory))
-    (make-directory --backup-directory t))
+(let ((--backup-directory (concat user-emacs-directory "backups")))
+  (if (not (file-exists-p --backup-directory))
+      (make-directory --backup-directory t))
 
-;; Tell Emacs about it
-(setq backup-directory-alist `(("." . ,--backup-directory)))
+  ;; Tell Emacs about the directory
+  (setq backup-directory-alist `(("." . ,--backup-directory))))
 
 ;; Set a few reasonable defaults
 (setq make-backup-files   t
