@@ -53,7 +53,7 @@
 
 ;; Disable bidirectional text rendering for performance reasons
 (setq-default bidi-display-reordering 'left-to-right
-	      bidi-paragraph-direction 'left-to-right)
+              bidi-paragraph-direction 'left-to-right)
 
 ;; NO TABS on indent
 (setq-default indent-tabs-mode nil)
@@ -75,9 +75,9 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -92,9 +92,6 @@
 (use-package which-key
   :straight t
   :config (which-key-mode))
-
-;; ESUP
-;(use-package esup :straight t :commands (esup))
 
 ;; Company Mode
 (use-package company-mode
@@ -121,21 +118,12 @@
   :hook (powershell-mode . lsp-enable-which-key-integration)
   :commands lsp)
 
-;; Debug Adapter Protocol
-;; (use-package dap-mode
-;;   :straight t
-;;   :defer t)
-
 ;; Syntax Highlighting
 (use-package powershell-mode
   :straight (powershell-mode
              :host github
              :repo "jschaf/powershell.el")
   :defer t)
-
-;; DAP Language Adapters
-;(use-package dap-pwsh
-;  :hook (powershell-mode . dap-mode))
 
 ;; Org
 (use-package org-mode
@@ -150,6 +138,18 @@
 (use-package magit
   :straight t
   :defer t)
+
+;; ESUP
+;;(use-package esup :straight t :commands (esup))
+
+;; Debug Adapter Protocol
+;; (use-package dap-mode
+;;   :straight t
+;;   :defer t)
+
+;; DAP Language Adapters
+;;(use-package dap-pwsh
+;;  :hook (powershell-mode . dap-mode))
 
 ;; Change scrolling with C-v and M-v to be one line at a time
 (global-set-key (kbd "C-v") 'scroll-up-line)
@@ -186,37 +186,38 @@
 
 ;;; Theme
 (setq-default header-line-format
-	      '(:eval (format-mode-line
-		       (list
-			"  %b "
-			'(:eval (propertize (format "%s " major-mode)
-					    'face `(:foreground "#6272a4")))
-			'(:eval (if (and buffer-file-name (buffer-modified-p))
-				    (propertize "(modified) "
-						'face `(:foreground "#6272a4"
-								    :weight ultra-light
-								    :slant italic))))
-			'(:eval (if (bound-and-true-p buffer-read-only)
-				    (propertize "(read-only) "
-						'face `(:foreground "#6272a4"
-								    :weight ultra-light
-								    :slant italic))))))))
+              '(:eval (format-mode-line
+                       (list
+                        "  %b "
+                        '(:eval (propertize (format "%s " major-mode)
+                                            'face `(:foreground "#6272a4")))
+                        '(:eval (if (and buffer-file-name (buffer-modified-p))
+                                    (propertize "(modified) "
+                                                'face `(:foreground "#6272a4"
+                                                                    :weight ultra-light
+                                                                    :slant italic))))
+                        '(:eval (if (bound-and-true-p buffer-read-only)
+                                    (propertize "(read-only) "
+                                                'face `(:foreground "#6272a4"
+                                                                    :weight ultra-light
+                                                                    :slant italic))))))))
 
 (setq-default mode-line-format '(""))
 
 (set-face-attribute 'header-line nil
-		    :inherit 'mode-line
-		    :weight 'extra-light
-		    :height 140
-		    :underline "#6272a4")
+                    :inherit 'mode-line
+                    :weight 'extra-light
+                    :height 140
+                    :underline "#6272a4"
+                    :foreground "#f8f8f2")
 (if (find-font (font-spec :name "Iosevka Sparkle"))
     (set-face-attribute 'header-line nil
                         :family "Iosevka Sparkle"))
 (set-face-attribute 'mode-line nil
-		    :height 5
-		    :box nil)
+                    :height 5
+                    :box nil)
 (set-face-attribute 'mode-line-inactive nil
-		    :inherit 'mode-line)
+                    :inherit 'mode-line)
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
