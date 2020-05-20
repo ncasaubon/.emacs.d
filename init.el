@@ -155,7 +155,8 @@
 
 ;;;; Style
 ;; Dracula theme
-(load-theme 'dracula t)
+(unless (custom-theme-enabled-p 'dracula)
+  (load-theme 'dracula t))
 
 ;; No more blinking cursor
 (blink-cursor-mode 0)
