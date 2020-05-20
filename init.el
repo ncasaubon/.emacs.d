@@ -146,6 +146,11 @@
 (use-package display-line-numbers-mode
   :hook prog-mode)
 
+;; Magit
+(use-package magit
+  :straight t
+  :defer t)
+
 ;; Change scrolling with C-v and M-v to be one line at a time
 (global-set-key (kbd "C-v") 'scroll-up-line)
 (global-set-key (kbd "M-v") 'scroll-down-line)
