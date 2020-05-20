@@ -179,9 +179,10 @@
 (setq frame-background-mode 'dark)
 
 ;; Default font
-(set-face-attribute 'default nil
-		    :height 140
-		    :family "Iosevka")
+(if (find-font (font-spec :name "Iosevka"))
+    (set-face-attribute 'default nil
+                        :height 140
+                        :family "Iosevka"))
 
 ;;; Theme
 (setq-default header-line-format
@@ -207,8 +208,10 @@
 		    :inherit 'mode-line
 		    :weight 'extra-light
 		    :height 140
-		    :underline "#6272a4"
-		    :family "Iosevka Sparkle")
+		    :underline "#6272a4")
+(if (find-font (font-spec :name "Iosevka Sparkle"))
+    (set-face-attribute 'header-line nil
+                        :family "Iosevka Sparkle"))
 (set-face-attribute 'mode-line nil
 		    :height 5
 		    :box nil)
