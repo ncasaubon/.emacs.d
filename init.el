@@ -154,6 +154,9 @@
 (global-set-key (kbd "<C-tab>") 'other-window)
 
 ;;;; Style
+;; Dracula theme
+(load-theme 'dracula t)
+
 ;; No more blinking cursor
 (blink-cursor-mode 0)
 
