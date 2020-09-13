@@ -58,15 +58,6 @@
 ;; NO TABS on indent
 (setq-default indent-tabs-mode nil)
 
-;;; Powershell
-;; Default to Powershell when running M-x shell
-(unless (eq (executable-find "pwsh") nil)
-  (setq explicit-shell-file-name "pwsh"))
-
-;; Default Powershell
-(if (eq 'system-type 'windows-nt)
-    (setq powershell-location-of-exe "c:/Program Files/PowerShell/7/pwsh.exe"))
-
 ;;;; Packages, hooks, and bindings
 ;; straight.el bootstrapping
 (defvar bootstrap-version)
@@ -111,20 +102,6 @@
 ;; YASnippet
 (use-package yasnippet :straight t :defer t)
 
-;; Language Server Protocol
-(setq lsp-keymap-prefix "M-l")
-(use-package lsp-mode
-  :straight t
-  :hook (powershell-mode . lsp-enable-which-key-integration)
-  :commands lsp)
-
-;; Syntax Highlighting
-(use-package powershell-mode
-  :straight (powershell-mode
-             :host github
-             :repo "jschaf/powershell.el")
-  :defer t)
-
 ;; Org
 (use-package org-mode
   :straight (:type built-in)
@@ -139,17 +116,9 @@
   :straight t
   :defer t)
 
-;; ESUP
-;;(use-package esup :straight t :commands (esup))
-
-;; Debug Adapter Protocol
-;; (use-package dap-mode
-;;   :straight t
-;;   :defer t)
-
-;; DAP Language Adapters
-;;(use-package dap-pwsh
-;;  :hook (powershell-mode . dap-mode))
+(use-package csv-mode
+  :straight t
+  :defer t)
 
 ;; Change scrolling with C-v and M-v to be one line at a time
 (global-set-key (kbd "C-v") 'scroll-up-line)
@@ -176,48 +145,13 @@
 (set-frame-parameter (selected-frame) 'internal-border-width 5)
 
 ;; Tell Emacs the background is dark (default will auto figure it out)
-(setq frame-background-mode 'dark)
+;(setq frame-background-mode 'dark)
 
 ;; Default font
 (if (find-font (font-spec :name "Iosevka"))
     (set-face-attribute 'default nil
                         :height 140
                         :family "Iosevka"))
-
-;;; Theme
-(setq-default header-line-format
-              '(:eval (format-mode-line
-                       (list
-                        "  %b "
-                        '(:eval (propertize (format "%s " major-mode)
-                                            'face `(:foreground "#6272a4")))
-                        '(:eval (if (and buffer-file-name (buffer-modified-p))
-                                    (propertize "(modified) "
-                                                'face `(:foreground "#6272a4"
-                                                                    :weight ultra-light
-                                                                    :slant italic))))
-                        '(:eval (if (bound-and-true-p buffer-read-only)
-                                    (propertize "(read-only) "
-                                                'face `(:foreground "#6272a4"
-                                                                    :weight ultra-light
-                                                                    :slant italic))))))))
-
-(setq-default mode-line-format '(""))
-
-(set-face-attribute 'header-line nil
-                    :inherit 'mode-line
-                    :weight 'extra-light
-                    :height 140
-                    :underline "#6272a4"
-                    :foreground "#f8f8f2")
-(if (find-font (font-spec :name "Iosevka Sparkle"))
-    (set-face-attribute 'header-line nil
-                        :family "Iosevka Sparkle"))
-(set-face-attribute 'mode-line nil
-                    :height 5
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :inherit 'mode-line)
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
