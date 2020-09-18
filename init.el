@@ -8,39 +8,15 @@
 ;; pLEaSe ANsWer yEs oR nO.
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Get rid of all menus
+;; Get rid of menus
 (menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
 
-;; Enable pop-up windows
-(tooltip-mode 1)
-
-;; Inhibit startup buffer with the Emacs logo, dired in ~
+;; Inhibit startup buffer with the Emacs logo
 (setq inhibit-startup-screen t)
-(setq initial-buffer-choice "~")
 
 ;; Upcase/downcase region
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
-;; Mouse scrolls 1 line/+shift 5 lines/+control full screens
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
-
-;;; Backups
-;; Make backups directory in ~/.emacs.d/
-(let ((--backup-directory (concat user-emacs-directory "backups")))
-  (if (not (file-exists-p --backup-directory))
-      (make-directory --backup-directory t))
-
-  ;; Tell Emacs about the directory
-  (setq backup-directory-alist `(("." . ,--backup-directory))))
-
-;; Set a few reasonable defaults
-(setq make-backup-files   t
-      backup-by-copying   t
-      version-control     t
-      delete-old-versions t)
 
 ;; Turn off bell (Dracula theme makes this do nothing)
 (setq visible-bell t)
@@ -55,8 +31,30 @@
 (setq-default bidi-display-reordering 'left-to-right
               bidi-paragraph-direction 'left-to-right)
 
+;; Matching parentheses
+(show-paren-mode t)
+
 ;; NO TABS on indent
 (setq-default indent-tabs-mode nil)
+
+;; Change scrolling with C-v and M-v to be one line at a time
+(global-set-key (kbd "C-v") 'scroll-up-line)
+(global-set-key (kbd "M-v") 'scroll-down-line)
+
+;;;; Backups
+;; Make backups directory in ~/.emacs.d/
+(let ((--backup-directory (concat user-emacs-directory "backups")))
+  (unless (file-exists-p --backup-directory)
+    (make-directory --backup-directory t))
+
+  ;; Tell Emacs about the directory
+  (setq backup-directory-alist `(("." . ,--backup-directory))))
+
+;; Set a few reasonable defaults
+(setq make-backup-files   t
+      backup-by-copying   t
+      version-control     t
+      delete-old-versions t)
 
 ;;;; Packages, hooks, and bindings
 ;; straight.el bootstrapping
@@ -77,7 +75,11 @@
 (straight-use-package 'use-package)
 
 ;; Dracula
-(use-package dracula-theme :straight t)
+(use-package dracula-theme
+  :straight t
+  :init
+  (unless (custom-theme-enabled-p 'dracula)
+    (load-theme 'dracula t)))
 
 ;; Which Key
 (use-package which-key
@@ -89,11 +91,7 @@
   :straight (company-mode
              :host github
              :repo "company-mode/company-mode")
-  :hook prog-mode
-  :custom-face
-  (company-tooltip ((t (:background "#44475a"
-                                    :foreground "#f8f8f2"
-                                    :height 0.75)))))
+  :hook prog-mode)
 
 ;; Flycheck
 (use-package flycheck
@@ -116,42 +114,41 @@
   :straight t
   :defer t)
 
+;; CSV
 (use-package csv-mode
   :straight t
   :defer t)
 
-;; Change scrolling with C-v and M-v to be one line at a time
-(global-set-key (kbd "C-v") 'scroll-up-line)
-(global-set-key (kbd "M-v") 'scroll-down-line)
+;; Ivy
+(use-package ivy
+  :straight t
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq search-default-mode #'char-fold-to-regexp)
+  :bind (("C-c C-r" . ivy-resume)
+         ("<f6>" . ivy-resume)))
 
-;; C-tab to other-window
-(global-set-key (kbd "<C-tab>") 'other-window)
+;; Swiper
+(use-package swiper
+  :straight t
+  :bind (("C-s" . swiper)))
 
-;;;; Style
-;; Dracula theme
-(unless (custom-theme-enabled-p 'dracula)
-  (load-theme 'dracula t))
-
-;; No more blinking cursor
-(blink-cursor-mode 0)
-
-;; Smaller fringes
-(set-fringe-mode '(1 . 1))
-
-;; Matching parentheses
-(show-paren-mode t)
-
-;; Box in the whole frame a bit
-(set-frame-parameter (selected-frame) 'internal-border-width 5)
-
-;; Tell Emacs the background is dark (default will auto figure it out)
-;(setq frame-background-mode 'dark)
-
-;; Default font
-(if (find-font (font-spec :name "Iosevka"))
-    (set-face-attribute 'default nil
-                        :height 140
-                        :family "Iosevka"))
+;; Counsel
+(use-package counsel
+  :straight t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("<f1> f" . counsel-describe-function)
+         ("<f1> v" . counsel-describe-variable)
+         ("<f1> o" . counsel-describe-symbol)
+         ("<f1> l" . counsel-find-library)
+         ("<f2> i" . counsel-info-lookup-symbol)
+         ("<f2> u" . counsel-unicode-char)
+         ("C-c g" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate)))
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
