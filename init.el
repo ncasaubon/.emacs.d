@@ -10,6 +10,8 @@
 
 ;; Get rid of menus
 (menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 ;; Inhibit startup buffer with the Emacs logo
 (setq inhibit-startup-screen t)
@@ -26,6 +28,9 @@
 
 ;; Idle update delay
 (setq idle-update-delay 1)
+
+;; Mouse scrolls 1 line/+shift 5 lines/+control full screens
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
 
 ;; Disable bidirectional text rendering for performance reasons
 (setq-default bidi-display-reordering 'left-to-right
@@ -149,6 +154,10 @@
          ("C-c j" . counsel-git-grep)
          ("C-c k" . counsel-ag)
          ("C-x l" . counsel-locate)))
+
+;; Olivetti writing mode
+(use-package olivetti
+  :straight t)
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
