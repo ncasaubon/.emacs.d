@@ -1,4 +1,7 @@
 ;;;; Pre-startup
+;; Force lexical bindings
+(setq lexical-binding t)
+
 ;; Prevent GC at startup
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6
@@ -15,6 +18,9 @@
 
 ;; Inhibit startup buffer with the Emacs logo
 (setq inhibit-startup-screen t)
+
+;; Remove scratch message
+(setq initial-scratch-message nil)
 
 ;; Upcase/downcase region
 (put 'upcase-region 'disabled nil)
@@ -61,6 +67,20 @@
       version-control     t
       delete-old-versions t)
 
+;;;; Style
+;; Set Iosevka as default font
+(cond
+ ((string-equal system-type "gnu/linux")
+  (if (find-font (font-spec :name "Iosevka"))
+      (cond ((<= (display-pixel-height) (display-pixel-width))
+             (set-face-attribute 'default nil
+                                 :height 120
+                                 :family "Iosevka"))
+            ((> (display-pixel-height) (display-pixel-width))
+             (set-face-attribute 'default nil
+                                 :height 275
+                                 :family "Iosevka"))))))
+
 ;;;; Packages, hooks, and bindings
 ;; straight.el bootstrapping
 (defvar bootstrap-version)
@@ -79,85 +99,8 @@
 ;; use-package setup
 (straight-use-package 'use-package)
 
-;; Dracula
-(use-package dracula-theme
-  :straight t
-  :init
-  (unless (custom-theme-enabled-p 'dracula)
-    (load-theme 'dracula t)))
-
-;; Which Key
-(use-package which-key
-  :straight t
-  :config (which-key-mode))
-
-;; Company Mode
-(use-package company-mode
-  :straight (company-mode
-             :host github
-             :repo "company-mode/company-mode")
-  :hook prog-mode)
-
-;; Flycheck
-(use-package flycheck
-  :straight t)
-
-;; YASnippet
-(use-package yasnippet :straight t :defer t)
-
-;; Org
-(use-package org-mode
-  :straight (:type built-in)
-  :defer t)
-
-;; Display line numbers
-(use-package display-line-numbers-mode
-  :hook prog-mode)
-
-;; Magit
-(use-package magit
-  :straight t
-  :defer t)
-
-;; CSV
-(use-package csv-mode
-  :straight t
-  :defer t)
-
-;; Ivy
-(use-package ivy
-  :straight t
-  :init
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq search-default-mode #'char-fold-to-regexp)
-  :bind (("C-c C-r" . ivy-resume)
-         ("<f6>" . ivy-resume)))
-
-;; Swiper
-(use-package swiper
-  :straight t
-  :bind (("C-s" . swiper)))
-
-;; Counsel
-(use-package counsel
-  :straight t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("<f1> f" . counsel-describe-function)
-         ("<f1> v" . counsel-describe-variable)
-         ("<f1> o" . counsel-describe-symbol)
-         ("<f1> l" . counsel-find-library)
-         ("<f2> i" . counsel-info-lookup-symbol)
-         ("<f2> u" . counsel-unicode-char)
-         ("C-c g" . counsel-git)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-ag)
-         ("C-x l" . counsel-locate)))
-
-;; Olivetti writing mode
-(use-package olivetti
-  :straight t)
+;; Bring in all packages
+(load-file "~/.emacs.d/use-package.el")
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
