@@ -57,6 +57,12 @@
   :straight t
   :defer t)
 
+;; Projectile
+(use-package projectile
+  :straight t
+  :config
+  (projectile-mode t))
+
 ;; Ivy
 (use-package ivy
   :straight t
