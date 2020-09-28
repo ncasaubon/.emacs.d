@@ -72,15 +72,22 @@
 
 ;;;; Style
 ;; Set Iosevka as default font
-(if (find-font (font-spec :name "Iosevka"))
-    (cond ((<= (display-pixel-height) (display-pixel-width))
-           (set-face-attribute 'default nil
-                               :height 150
-                               :family "Iosevka"))
-          ((> (display-pixel-height) (display-pixel-width))
-           (set-face-attribute 'default nil
-                               :height 360
-                               :family "Iosevka"))))
+(defun nico/set-iosevka ()
+  (interactive)
+  (if (find-font (font-spec :name "Iosevka"))
+      (set-face-attribute 'default nil
+                          :family "Iosevka")))
+
+;; Resize font based on screen height/width sizes
+;;  (desktop vs portrait mode phone)
+(defun nico/resize-fonts ()
+  (interactive)
+  (cond ((<= (display-pixel-height) (display-pixel-width))
+         (set-face-attribute 'default nil
+                             :height 150))
+        ((> (display-pixel-height) (display-pixel-width))
+         (set-face-attribute 'default nil
+                             :height 360))))
 
 ;;;; Packages, hooks, and bindings
 ;; straight.el bootstrapping
