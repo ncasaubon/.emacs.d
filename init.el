@@ -52,6 +52,9 @@
 (global-set-key (kbd "C-v") 'scroll-up-line)
 (global-set-key (kbd "M-v") 'scroll-down-line)
 
+;; Redraw display
+(global-set-key (kbd "<f5>") 'redraw-display)
+
 ;;;; Backups
 ;; Make backups directory in ~/.emacs.d/
 (let ((--backup-directory (concat user-emacs-directory "backups")))
