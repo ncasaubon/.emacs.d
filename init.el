@@ -72,17 +72,15 @@
 
 ;;;; Style
 ;; Set Iosevka as default font
-(cond
- ((string-equal system-type "gnu/linux")
-  (if (find-font (font-spec :name "Iosevka"))
-      (cond ((<= (display-pixel-height) (display-pixel-width))
-             (set-face-attribute 'default nil
-                                 :height 120
-                                 :family "Iosevka"))
-            ((> (display-pixel-height) (display-pixel-width))
-             (set-face-attribute 'default nil
-                                 :height 360
-                                 :family "Iosevka"))))))
+(if (find-font (font-spec :name "Iosevka"))
+    (cond ((<= (display-pixel-height) (display-pixel-width))
+           (set-face-attribute 'default nil
+                               :height 150
+                               :family "Iosevka"))
+          ((> (display-pixel-height) (display-pixel-width))
+           (set-face-attribute 'default nil
+                               :height 360
+                               :family "Iosevka"))))
 
 ;;;; Packages, hooks, and bindings
 ;; straight.el bootstrapping
