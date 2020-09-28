@@ -78,7 +78,7 @@
                                  :family "Iosevka"))
             ((> (display-pixel-height) (display-pixel-width))
              (set-face-attribute 'default nil
-                                 :height 275
+                                 :height 360
                                  :family "Iosevka"))))))
 
 ;;;; Packages, hooks, and bindings
