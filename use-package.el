@@ -104,14 +104,17 @@
   (ivy-posframe-mode t)
   :custom
   (ivy-posframe-display-functions-alist
-   '((swiper          . ivy-display-function-fallback)
+   '((swiper          . ivy-posframe-display-at-frame-top-center)
      (complete-symbol . ivy-posframe-display-at-point)
      (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
-     (t               . ivy-posframe-display))))
+     (t               . ivy-posframe-display-at-frame-top-center)))
+  :after
+  (ivy posframe))
 
 ;; Olivetti writing mode
 (use-package olivetti
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; ESXML-Query (nov.el dependency)
 (use-package esxml
