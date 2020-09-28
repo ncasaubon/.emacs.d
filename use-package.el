@@ -185,3 +185,22 @@
   (x-underline-at-descent-line t)
   (centaur-tabs-set-bar 'under)
   (centaur-tabs-mode t))
+
+;; LSP basics
+(use-package lsp-mode
+  :straight t
+  :hook (python-mode . lsp-deferred))
+(use-package lsp-ui
+  :straight t
+  :commands lsp-ui-mode)
+(use-package lsp-ivy
+  :straight t
+  :commands lsp-ivy-workspace-symbol)
+(use-package lsp-jedi
+  :straight (lsp-jedi
+             :host github
+             :repo "fredcamps/lsp-jedi")
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-disabled-clients 'pyls)
+    (add-to-list 'lsp-enabled-clients 'jedi)))
