@@ -50,7 +50,16 @@
 ;; Magit
 (use-package magit
   :straight t
-  :defer t)
+  :bind (("C-c g" . #'magit-status)))
+
+;; Libgit
+(use-package libgit
+  :straight t)
+
+;; Magit-libgit
+(use-package magit-libgit
+  :straight t
+  :after (magit libgit))
 
 ;; CSV
 (use-package csv-mode
@@ -181,7 +190,7 @@
   (uniquify-buffer-name-style 'forward)
   (centaur-tabs-style "bar")
   (centaur-tabs-height 24)
-  (centaur-tabs-set-icons t)
+  (centaur-tabs-set-icons nil)
   (centaur-tabs-cycle-scope 'tabs)
   (centaur-tabs-set-modified-marker t)
   (centaur-tabs-modified-marker "⦿")
