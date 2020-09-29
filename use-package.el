@@ -50,7 +50,7 @@
 ;; Magit
 (use-package magit
   :straight t
-  :defer t)
+  :bind (("C-c g" . magit-status)))
 
 ;; CSV
 (use-package csv-mode
