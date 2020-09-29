@@ -52,14 +52,14 @@
   :straight t
   :bind (("C-c g" . #'magit-status)))
 
-;; Libgit
-(use-package libgit
-  :straight t)
+;; ;; Libgit (need to build properly)
+;; (use-package libgit
+;;   :straight t)
 
-;; Magit-libgit
-(use-package magit-libgit
-  :straight t
-  :after (magit libgit))
+;; ;; Magit-libgit
+;; (use-package magit-libgit
+;;   :straight t
+;;   :after (magit libgit))
 
 ;; CSV
 (use-package csv-mode
