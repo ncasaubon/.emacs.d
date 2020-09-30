@@ -184,7 +184,7 @@
   (centaur-tabs-set-icons t)
   (centaur-tabs-cycle-scope 'tabs)
   (centaur-tabs-set-modified-marker t)
-  (centaur-tabs-modified-marker "⦿")
+  (centaur-tabs-modified-marker "•")
   (x-underline-at-descent-line t)
   (centaur-tabs-set-bar 'under)
   (centaur-tabs-mode t))
