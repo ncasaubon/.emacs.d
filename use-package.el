@@ -2,7 +2,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t)
+  (load-theme 'doom-outrun-electric t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   :custom
@@ -39,8 +39,12 @@
   :straight t)
 
 ;; Org
+;; (use-package org-mode
+;;   :straight (:type built-in)
+;;   :defer t)
 (use-package org-mode
-  :straight (:type built-in)
+  :straight (org-mode
+             :repo "https://code.orgmode.org/bzg/org-mode.git")
   :defer t)
 
 ;; Display line numbers
@@ -49,8 +53,7 @@
 
 ;; Magit
 (use-package magit
-  :straight t
-  :bind (("C-c g" . magit-status)))
+  :straight t)
 
 ;; CSV
 (use-package csv-mode
@@ -62,6 +65,23 @@
   :straight t
   :config
   (projectile-mode t))
+
+;; Treemacs
+(use-package treemacs
+  :straight t)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :straight t)
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :straight t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :straight t
+  :config (treemacs-icons-dired-mode))
 
 ;; Ivy
 (use-package ivy
@@ -89,27 +109,33 @@
 (use-package avy
   :straight t
   :config
-  (avy-setup-default)
-  :bind
-  ("M-g c" . avy-goto-char))
+  (avy-setup-default))
 
 ;; Posframe for positioning frames in preferred places.
 (use-package posframe
   :straight t)
 
 ;; Posframe ivy integration
-(use-package ivy-posframe
+;; (use-package ivy-posframe
+;;   :straight t
+;;   :config
+;;   (ivy-posframe-mode t)
+;;   :custom
+;;   (ivy-posframe-display-functions-alist
+;;    '((swiper          . ivy-posframe-display-at-frame-top-center)
+;;      (complete-symbol . ivy-posframe-display-at-point)
+;;      (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
+;;      (t               . ivy-posframe-display-at-frame-top-center)))
+;;   :after
+;;   (ivy posframe))
+
+;; Ace Window
+(use-package ace-window
   :straight t
-  :config
-  (ivy-posframe-mode t)
+  :bind
+  ("M-o" . ace-window)
   :custom
-  (ivy-posframe-display-functions-alist
-   '((swiper          . ivy-posframe-display-at-frame-top-center)
-     (complete-symbol . ivy-posframe-display-at-point)
-     (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
-     (t               . ivy-posframe-display-at-frame-top-center)))
-  :after
-  (ivy posframe))
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;; Olivetti writing mode
 (use-package olivetti
@@ -131,47 +157,13 @@
   :straight t
   :config
   (centaur-tabs-headline-match)
-  (defun centaur-tabs-buffer-groups ()
-    "`centaur-tabs-buffer-groups' control buffers' group rules.
-      Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
-      All buffer name start with * will group to \"Emacs\".
-      Other buffer group by `centaur-tabs-get-group-name' with project name."
-    (list
-     (cond
-      ((or (string-equal "*" (substring (buffer-name) 0 1))
-           (memq major-mode '(magit-process-mode
-      			magit-status-mode
-      			magit-diff-mode
-      			magit-log-mode
-      			magit-file-mode
-      			magit-blob-mode
-      			magit-blame-mode
-      			)))
-       "Emacs")
-      ((derived-mode-p 'prog-mode)
-       "Editing")
-      ((derived-mode-p 'dired-mode)
-       "Dired")
-      ((memq major-mode '(org-mode
-      		    org-agenda-clockreport-mode
-      		    org-src-mode
-      		    org-agenda-mode
-      		    org-beamer-mode
-      		    org-indent-mode
-      		    org-bullets-mode
-      		    org-cdlatex-mode
-      		    org-agenda-log-mode
-      		    diary-mode))
-       "OrgMode")
-      (t
-       (centaur-tabs-get-group-name (current-buffer))))))
   :hook
   (term-mode . centaur-tabs-local-mode)
   (calendar-mode . centaur-tabs-local-mode)
   (org-agenda-mode . centaur-tabs-local-mode)
   :bind
-  ("<C-tab>" . #'centaur-tabs-forward)
-  ("<C-iso-lefttab>" . #'centaur-tabs-backward)
+  ("C-x <right>" . #'centaur-tabs-forward)
+  ("C-x <left>" . #'centaur-tabs-backward)
   ("C-c t t" . centaur-tabs-toggle-groups)
   ("C-c t s" . centaur-tabs-counsel-switch-group)
   ("C-c t p" . centaur-tabs-group-by-projectile-project)

@@ -82,7 +82,10 @@
 ;;  (desktop vs portrait mode phone)
 (defun nico/resize-fonts ()
   (interactive)
-  (cond ((<= (display-pixel-height) (display-pixel-width))
+  (cond ((<= (* 2 (display-pixel-height)) (display-pixel-width))
+         (set-face-attribute 'default nil
+                             :height 200))
+        ((<= (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
                              :height 150))
         ((> (display-pixel-height) (display-pixel-width))
