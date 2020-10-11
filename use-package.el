@@ -59,7 +59,8 @@
 
 ;; Magit
 (use-package magit
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; Forge (GitHub, Gitlab, etc. integrations)
 (use-package forge
@@ -79,7 +80,8 @@
 
 ;; Treemacs
 (use-package treemacs
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package treemacs-magit
   :after treemacs magit
@@ -93,6 +95,10 @@
   :after treemacs dired
   :straight t
   :config (treemacs-icons-dired-mode))
+
+(use-package dired-x
+  :straight (:type built-in)
+  :after dired)
 
 ;; Ivy
 (use-package ivy
@@ -155,17 +161,20 @@
 
 ;; ESXML-Query (nov.el dependency)
 (use-package esxml
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; nov.el EPUB reader
 (use-package nov.el
   :straight (:type git :repo "https://depp.brause.cc/nov.el.git")
+  :after esxml
   :init
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ;; Centaur tabs
 (use-package centaur-tabs
   :straight t
+  :defer t
   :config
   (centaur-tabs-headline-match)
   :hook
@@ -195,18 +204,28 @@
 ;; LSP basics
 (use-package lsp-mode
   :straight t
+  :defer t
   :hook (python-mode . lsp-deferred))
 (use-package lsp-ui
   :straight t
+  :after lsp-mode
   :commands lsp-ui-mode)
 (use-package lsp-ivy
   :straight t
+  :after lsp ivy
   :commands lsp-ivy-workspace-symbol)
 (use-package lsp-jedi
   :straight (lsp-jedi
              :host github
              :repo "fredcamps/lsp-jedi")
+  :after lsp-mode
   :config
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-disabled-clients 'pyls)
     (add-to-list 'lsp-enabled-clients 'jedi)))
+
+;; Spaceline
+(use-package spaceline
+  :straight t
+  :config
+  (spaceline-emacs-theme))

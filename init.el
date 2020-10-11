@@ -82,12 +82,12 @@
 ;;  (desktop vs portrait mode phone)
 (defun nico/resize-fonts ()
   (interactive)
-  (cond ((<= (* 2 (display-pixel-height)) (display-pixel-width))
-         (set-face-attribute 'default nil
-                             :height 200))
-        ((<= (display-pixel-height) (display-pixel-width))
+  (cond ((<= (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
                              :height 150))
+        ((<= (* 2 (display-pixel-height)) (display-pixel-width))
+         (set-face-attribute 'default nil
+                             :height 200))
         ((> (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
                              :height 360))))
@@ -111,7 +111,7 @@
 (straight-use-package 'use-package)
 
 ;; Bring in all packages
-(load-file "~/.emacs.d/use-package.el")
+(load "~/.emacs.d/use-package.el")
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
