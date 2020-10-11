@@ -47,6 +47,12 @@
              :repo "https://code.orgmode.org/bzg/org-mode.git")
   :defer t)
 
+;; Org bullets
+(use-package org-bullets
+  :straight t
+  :after org
+  :hook (org-mode . org-bullets-mode))
+
 ;; Display line numbers
 (use-package display-line-numbers-mode
   :hook prog-mode)
