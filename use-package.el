@@ -80,8 +80,7 @@
 
 ;; Treemacs
 (use-package treemacs
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package treemacs-magit
   :after treemacs magit
@@ -198,8 +197,7 @@
   (centaur-tabs-set-modified-marker t)
   (centaur-tabs-modified-marker "•")
   (x-underline-at-descent-line t)
-  (centaur-tabs-set-bar 'under)
-  (centaur-tabs-mode t))
+  (centaur-tabs-set-bar 'under))
 
 ;; LSP basics
 (use-package lsp-mode
