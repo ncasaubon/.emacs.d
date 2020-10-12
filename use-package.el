@@ -45,13 +45,27 @@
 (use-package org-mode
   :straight (org-mode
              :repo "https://code.orgmode.org/bzg/org-mode.git")
-  :defer t)
+  :defer t
+  :custom
+  (org-directory "~/.org/"))
 
 ;; Org bullets
 (use-package org-bullets
   :straight t
   :after org
   :hook (org-mode . org-bullets-mode))
+
+;; Org roam
+(use-package org-roam
+  :straight t
+  :after org
+  :custom
+  (org-roam-directory "~/.org/org-roam/"))
+
+;; Org noter
+(use-package org-noter
+  :straight t
+  :after org)
 
 ;; Display line numbers
 (use-package display-line-numbers-mode
