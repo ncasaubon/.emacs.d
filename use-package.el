@@ -2,7 +2,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-outrun-electric t)
+  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   :custom
@@ -93,21 +93,23 @@
   (projectile-mode t))
 
 ;; Treemacs
-(use-package treemacs
-  :straight t)
+;; (use-package treemacs
+;;   :straight t
+;;   :hook prog-mode)
 
-(use-package treemacs-magit
-  :after treemacs magit
-  :straight t)
+;; (use-package treemacs-magit
+;;   :after treemacs magit
+;;   :straight t)
 
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :straight t)
+;; (use-package treemacs-projectile
+;;   :after treemacs projectile
+;;   :straight t)
 
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :straight t
-  :config (treemacs-icons-dired-mode))
+;; Dired
+;; (use-package treemacs-icons-dired
+;;   :after dired
+;;   :straight t
+;;   :config (treemacs-icons-dired-mode))
 
 (use-package dired-x
   :straight (:type built-in)
@@ -185,33 +187,33 @@
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ;; Centaur tabs
-(use-package centaur-tabs
-  :straight t
-  :defer t
-  :config
-  (centaur-tabs-headline-match)
-  :hook
-  (term-mode . centaur-tabs-local-mode)
-  (calendar-mode . centaur-tabs-local-mode)
-  (org-agenda-mode . centaur-tabs-local-mode)
-  :bind
-  ("C-x <right>" . #'centaur-tabs-forward)
-  ("C-x <left>" . #'centaur-tabs-backward)
-  ("C-c t t" . centaur-tabs-toggle-groups)
-  ("C-c t s" . centaur-tabs-counsel-switch-group)
-  ("C-c t p" . centaur-tabs-group-by-projectile-project)
-  ("C-c t g" . centaur-tabs-group-buffer-groups)
-  :custom
-  (uniquify-separator "/")
-  (uniquify-buffer-name-style 'forward)
-  (centaur-tabs-style "bar")
-  (centaur-tabs-height 24)
-  (centaur-tabs-set-icons t)
-  (centaur-tabs-cycle-scope 'tabs)
-  (centaur-tabs-set-modified-marker t)
-  (centaur-tabs-modified-marker "•")
-  (x-underline-at-descent-line t)
-  (centaur-tabs-set-bar 'under))
+;; (use-package centaur-tabs
+;;   :straight t
+;;   :defer t
+;;   :config
+;;   (centaur-tabs-headline-match)
+;;   :hook
+;;   (term-mode . centaur-tabs-local-mode)
+;;   (calendar-mode . centaur-tabs-local-mode)
+;;   (org-agenda-mode . centaur-tabs-local-mode)
+;;   :bind
+;;   ("C-x <right>" . #'centaur-tabs-forward)
+;;   ("C-x <left>" . #'centaur-tabs-backward)
+;;   ("C-c t t" . centaur-tabs-toggle-groups)
+;;   ("C-c t s" . centaur-tabs-counsel-switch-group)
+;;   ("C-c t p" . centaur-tabs-group-by-projectile-project)
+;;   ("C-c t g" . centaur-tabs-group-buffer-groups)
+;;   :custom
+;;   (uniquify-separator "/")
+;;   (uniquify-buffer-name-style 'forward)
+;;   (centaur-tabs-style "bar")
+;;   (centaur-tabs-height 24)
+;;   (centaur-tabs-set-icons t)
+;;   (centaur-tabs-cycle-scope 'tabs)
+;;   (centaur-tabs-set-modified-marker t)
+;;   (centaur-tabs-modified-marker "•")
+;;   (x-underline-at-descent-line t)
+;;   (centaur-tabs-set-bar 'under))
 
 ;; LSP basics
 (use-package lsp-mode

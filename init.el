@@ -7,6 +7,11 @@
       gc-cons-percentage 0.6
       site-run-file nil)
 
+;; In noninteractive sessions, prioritize non-byte-compiled source files to
+;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
+;; to skip the mtime checks on every *.elc file.
+(setq load-prefer-newer noninteractive)
+
 ;;;; Emacs functionality and defaults
 ;; pLEaSe ANsWer yEs oR nO.
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -20,11 +25,16 @@
 (setq inhibit-startup-screen t)
 
 ;; Remove scratch message
+(setq initial-major-mode nil)
 (setq initial-scratch-message nil)
 
 ;; Upcase/downcase region
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; Eshell
+(setq eshell-glob-case-insensitive t)
+(setq eshell-cmpl-ignore-case t)
 
 ;; Turn off bell (Dracula theme makes this do nothing)
 (setq visible-bell t)
@@ -47,6 +57,9 @@
 
 ;; NO TABS on indent
 (setq-default indent-tabs-mode nil)
+
+;; Default Python
+(setq python-shell-interpreter "python3")
 
 ;; Change scrolling with C-v and M-v to be one line at a time
 (global-set-key (kbd "C-v") 'scroll-up-line)
@@ -84,7 +97,7 @@
   (interactive)
   (cond ((<= (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
-                             :height 200))
+                             :height 140))
         ((> (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
                              :height 360))))
