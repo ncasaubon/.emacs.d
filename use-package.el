@@ -106,13 +106,12 @@
 ;;   :straight t)
 
 ;; Dired
-;; (use-package treemacs-icons-dired
-;;   :after dired
-;;   :straight t
-;;   :config (treemacs-icons-dired-mode))
-
 (use-package dired-x
   :straight (:type built-in)
+  :after dired)
+
+(use-package all-the-icons-dired
+  :straight t
   :after dired)
 
 ;; Ivy
