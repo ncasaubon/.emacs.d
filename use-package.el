@@ -257,3 +257,7 @@
   :straight t
   :config
   (spaceline-emacs-theme))
+
+;; VTerm (needs --with-modules compilation support)
+(use-package vterm
+  :straight t)
