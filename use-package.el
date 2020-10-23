@@ -143,9 +143,14 @@
   :config
   (avy-setup-default))
 
+;; Bufler
+(use-package bufler
+  :straight t
+  :bind ("C-x C-b" . bufler))
+
 ;; Posframe for positioning frames in preferred places.
-(use-package posframe
-  :straight t)
+;; (use-package posframe
+;;   :straight t)
 
 ;; Posframe ivy integration
 ;; (use-package ivy-posframe
