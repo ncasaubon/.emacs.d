@@ -18,8 +18,9 @@
 
 ;; Get rid of menus
 (menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (progn (tool-bar-mode 0)
+           (scroll-bar-mode 0)))
 
 ;; Inhibit startup buffer with the Emacs logo
 (setq inhibit-startup-screen t)
