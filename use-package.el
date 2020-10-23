@@ -128,7 +128,8 @@
 ;; Swiper
 (use-package swiper
   :straight t
-  :bind (("C-s" . swiper)))
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 ;; Counsel
 (use-package counsel
