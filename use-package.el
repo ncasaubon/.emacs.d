@@ -10,7 +10,6 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   :custom
