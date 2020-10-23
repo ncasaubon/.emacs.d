@@ -1,3 +1,11 @@
+;; Modus Operandi/Vivendi
+(use-package modus-operandi-theme
+  :straight t)
+
+(use-package modus-vivendi-theme
+  :straight t
+  :defer t)
+
 ;; Doom One
 (use-package doom-themes
   :straight t
@@ -7,7 +15,8 @@
   (doom-themes-org-config)
   :custom
   (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t))
+  (doom-themes-enable-italic t)
+  :defer t)
 
 ;; Unicode fonts
 (use-package unicode-fonts
