@@ -5,7 +5,8 @@
 
 (use-package modus-vivendi-theme
   :straight t
-  :defer t)
+  :config
+  (load-theme 'modus-vivendi t))
 
 ;; Doom One
 (use-package doom-themes
