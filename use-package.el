@@ -90,11 +90,6 @@
   :straight t
   :defer t)
 
-;; Forge (GitHub, Gitlab, etc. integrations)
-(use-package forge
-  :straight t
-  :after magit)
-
 ;; CSV
 (use-package csv-mode
   :straight t
