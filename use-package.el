@@ -1,6 +1,7 @@
 ;; Modus Operandi/Vivendi
 (use-package modus-operandi-theme
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package modus-vivendi-theme
   :straight t
