@@ -39,6 +39,13 @@
              :repo "company-mode/company-mode")
   :hook prog-mode)
 
+;; Diff Highlight
+(use-package diff-hl
+  :straight t
+  :hook prog-mode
+  :config
+  (global-diff-hl-mode))
+
 ;; Flycheck
 (use-package flycheck
   :straight t)
