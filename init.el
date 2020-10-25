@@ -29,6 +29,9 @@
 (setq initial-major-mode nil)
 (setq initial-scratch-message nil)
 
+;; Enable recursive minibuffers
+(setq enable-recursive-minibuffers t)
+
 ;; Upcase/downcase region
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
