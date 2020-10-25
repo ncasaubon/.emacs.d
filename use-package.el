@@ -114,6 +114,22 @@
   :straight t
   :after dired)
 
+(use-package diredfl
+  :straight t
+  :after dired
+  :config
+  (diredfl-global-mode +1))
+
+(use-package dired-rsync
+  :straight t
+  :after dired
+  :config
+  (bind-key "C-c C-r" 'dired-rsync dired-mode-map))
+
+(use-package fd-dired
+  :straight t
+  :after dired)
+
 ;; Selectrum
 (use-package selectrum
   :straight t
