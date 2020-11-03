@@ -203,11 +203,10 @@
     (add-to-list 'lsp-disabled-clients 'pyls)
     (add-to-list 'lsp-enabled-clients 'jedi)))
 
-;; Spaceline
-(use-package spaceline
+;; Doom Modeline
+(use-package doom-modeline
   :straight t
-  :config
-  (spaceline-emacs-theme))
+  :init (doom-modeline-mode 1))
 
 ;; VTerm (needs --with-modules compilation support)
 (use-package vterm
