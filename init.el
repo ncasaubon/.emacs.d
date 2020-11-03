@@ -101,7 +101,7 @@
   (interactive)
   (cond ((<= (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
-                             :height 140))
+                             :height 120))
         ((> (display-pixel-height) (display-pixel-width))
          (set-face-attribute 'default nil
                              :height 360))))
