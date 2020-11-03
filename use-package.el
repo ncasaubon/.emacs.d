@@ -215,3 +215,7 @@
 ;; VTerm (needs --with-modules compilation support)
 (use-package vterm
   :straight t)
+
+;; Restart Emacs
+(use-package restart-emacs
+  :straight t)
