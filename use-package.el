@@ -31,7 +31,10 @@
 ;; Which Key
 (use-package which-key
   :straight t
-  :config (which-key-mode))
+  :config
+  (which-key-mode)
+  :custom
+  (which-key-idle-delay 0.3))
 
 ;; Company Mode
 (use-package company-mode
@@ -83,6 +86,7 @@
 
 ;; Display line numbers
 (use-package display-line-numbers-mode
+  :straight (:type built-in)
   :hook prog-mode)
 
 ;; Magit
