@@ -203,7 +203,7 @@
 ;; Doom Modeline
 (use-package doom-modeline
   :straight t
-  :init (doom-modeline-mode 1))
+  :hook (window-setup . doom-modeline-mode))
 
 ;; VTerm (needs --with-modules compilation support)
 (use-package vterm
