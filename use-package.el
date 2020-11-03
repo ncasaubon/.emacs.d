@@ -96,7 +96,11 @@
 (use-package projectile
   :straight t
   :config
-  (projectile-mode t))
+  (projectile-mode t)
+  :custom
+  (projectile-completion-system 'selectrum-read)
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
 
 ;; Dired
 (use-package dired-x
