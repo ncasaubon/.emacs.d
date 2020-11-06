@@ -189,7 +189,11 @@
 (use-package lsp-mode
   :straight t
   :defer t
-  :hook (python-mode . lsp-deferred))
+  :hook (python-mode . lsp-deferred)
+  :custom
+  (lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
 (use-package lsp-ui
   :straight t
   :after lsp-mode
