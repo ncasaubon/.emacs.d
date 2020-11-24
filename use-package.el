@@ -1,23 +1,13 @@
-;; Modus Operandi/Vivendi
-(use-package modus-operandi-theme
-  :straight t
-  :defer t)
-
-(use-package modus-vivendi-theme
-  :straight t
-  :config
-  (load-theme 'modus-vivendi t))
-
 ;; Doom One
 (use-package doom-themes
   :straight t
   :config
+  (load-theme 'doom-outrun-electric t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   :custom
   (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
-  :defer t)
+  (doom-themes-enable-italic t))
 
 ;; Unicode fonts
 (use-package unicode-fonts
@@ -45,7 +35,8 @@
 
 ;; Flycheck
 (use-package flycheck
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; YASnippet
 (use-package yasnippet
@@ -58,12 +49,6 @@
   :defer t
   :custom
   (org-directory "~/.org/"))
-
-;; Org bullets
-(use-package org-bullets
-  :straight t
-  :after org
-  :hook (org-mode . org-bullets-mode))
 
 ;; Org roam
 (use-package org-roam
@@ -98,7 +83,7 @@
   :config
   (projectile-mode t)
   :custom
-  (projectile-completion-system 'selectrum-read)
+  (projectile-completion-system 'default)
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
@@ -141,11 +126,16 @@
 
 ;; Prescient
 (use-package prescient
-  :straight t)
+  :straight t
+  :config
+  (prescient-persist-mode +1)
+  :custom
+  (prescient-history-length 1000))
 
 ;; Selectrum-Prescient
 (use-package selectrum-prescient
   :straight t
+  :after selectrum prescient
   :config
   (selectrum-prescient-mode +1))
 
@@ -194,10 +184,12 @@
   (lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
+
 (use-package lsp-ui
   :straight t
   :after lsp-mode
   :commands lsp-ui-mode)
+
 (use-package lsp-jedi
   :straight (lsp-jedi
              :host github
@@ -220,3 +212,13 @@
 ;; Restart Emacs
 (use-package restart-emacs
   :straight t)
+
+;; Recentf
+(use-package recentf
+  :straight (:type built-in)
+  :config (recentf-mode +1))
+
+;; eterm-256color
+(use-package eterm-256color
+  :straight t
+  :hook (term-mode . eterm-256color-mode))

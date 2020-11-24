@@ -26,7 +26,7 @@
 (setq inhibit-startup-screen t)
 
 ;; Remove scratch message
-(setq initial-major-mode nil)
+(setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message nil)
 
 ;; Enable recursive minibuffers
@@ -87,26 +87,7 @@
       version-control     t
       delete-old-versions t)
 
-;;;; Style
-;; Set Iosevka as default font
-(defun nico/set-iosevka ()
-  (interactive)
-  (if (find-font (font-spec :name "Iosevka"))
-      (set-face-attribute 'default nil
-                          :family "Iosevka")))
-
-;; Resize font based on screen height/width sizes
-;;  (desktop vs portrait mode phone)
-(defun nico/resize-fonts ()
-  (interactive)
-  (cond ((<= (display-pixel-height) (display-pixel-width))
-         (set-face-attribute 'default nil
-                             :height 120))
-        ((> (display-pixel-height) (display-pixel-width))
-         (set-face-attribute 'default nil
-                             :height 360))))
-
-;;;; Packages, hooks, and bindings
+;;;; Packages
 ;; straight.el bootstrapping
 (defvar bootstrap-version)
 (let ((bootstrap-file
