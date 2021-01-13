@@ -37,3 +37,7 @@
 
 ;; Get rid of "Package cl is deprecated" warning
 (setq byte-compile-warnings '(cl-functions))
+
+(set-face-attribute 'default nil
+                    :height 170
+                    :family "Iosevka")

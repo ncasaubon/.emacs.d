@@ -17,27 +17,6 @@
   (interactive)
   (find-file (completing-read "Find recent file: " recentf-list)))
 
-(defun nrc/set-iosevka ()
-  "If installed on the system, set the default font to Iosevka."
-  (interactive)
-  (if (find-font (font-spec :name "Iosevka"))
-      (set-face-attribute 'default nil
-                          :family "Iosevka")))
-
-(defun nrc/resize-fonts ()
-  "Resize fonts based on screen proportions.
-
-   This helps when moving from Emacs on the phone screen to the
-   monitor, but maintaining the same session throughout,
-   especially when using Emacs in daemon mode."
-  (interactive)
-  (cond ((<= (display-pixel-height) (display-pixel-width))
-         (set-face-attribute 'default nil
-                             :height 120))
-        ((> (display-pixel-height) (display-pixel-width))
-         (set-face-attribute 'default nil
-                             :height 360))))
-
 (defun nrc/swap-theme (new-theme)
   "Swap all enabled custom themes for a new custom theme."
   (interactive
@@ -52,6 +31,36 @@
         (load-theme new-theme t))
     (load-theme new-theme t)))
 
+;; (defun nrc/set-default-font (new-font)
+;;   "If installed on the system, set the default font to the selection."
+;;   (interactive
+;;    (list
+;;     (intern (completing-read "Swap font family: " (lambda () (find-font (font-spec :name new-font)))))))
+;;   (set-face-attribute 'default nil :family new-font))
+
+;; (defun nrc/resize-fonts ()
+;;   "Resize fonts based on screen proportions.
+
+;;    This helps when moving from Emacs on the phone screen to the
+;;    monitor, but maintaining the same session throughout,
+;;    especially when using Emacs in daemon mode."
+;;   (interactive)
+;;   (cond ((<= (display-pixel-height) (display-pixel-width))
+;;          (set-face-attribute 'default nil
+;;                              :height 120))
+;;         ((> (display-pixel-height) (display-pixel-width))
+;;          (set-face-attribute 'default nil
+;;                              :height 360))))
+
+;; (defun nrc/swap-default-font (new-font)
+;;   "Swap currently enabled default font for a new font.
+;;    Currently non-functional (still in development)."
+;;   (interactive
+;;    (list
+;;     (intern (completing-read "Swap font family: " (font-family-list)))))
+;;   (set-face-attribute 'default nil
+;;                       :family new-font))
+
 (defconst nrc-prefix "C-z"
   "NRC keymap prefix.")
 
@@ -60,6 +69,7 @@
     (dolist (bind `(("\C-m" . nrc/sanity-check)
                     ("t m" . nrc/xterm-mouse-mode)
                     ("f r" . nrc/find-recent-file)
+                    ("s t" . nrc/swap-theme)
                     ("\C-z" . suspend-frame)))
       (define-key map (kbd (concat nrc-prefix " " (car bind))) (cdr bind)))
     map)

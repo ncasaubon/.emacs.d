@@ -69,6 +69,9 @@
 (global-set-key (kbd "C-v") 'scroll-up-line)
 (global-set-key (kbd "M-v") 'scroll-down-line)
 
+;; Other window
+(global-set-key (kbd "M-o") 'other-window)
+
 ;; Redraw display
 (global-set-key (kbd "<f5>") 'redraw-display)
 
@@ -107,6 +110,7 @@
 
 ;; Bring in all packages
 (load "~/.emacs.d/use-package.el")
+(load "~/.emacs.d/nrc-mode.el")
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
