@@ -2,7 +2,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'modus-operandi t)
+  (load-theme 'modus-vivendi t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   :custom
@@ -156,3 +156,7 @@
 (use-package recentf
   :straight (:type built-in)
   :config (recentf-mode +1))
+
+;; Terraform Mode
+(use-package terraform-mode
+  :straight t)
