@@ -114,11 +114,6 @@
   :straight t
   :bind ("C-t" . avy-goto-char))
 
-;; Bufler
-(use-package bufler
-  :straight t
-  :bind ("C-x C-b" . bufler))
-
 ;; LSP
 (use-package lsp-mode
   :straight t
