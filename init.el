@@ -40,6 +40,9 @@
 (setq eshell-glob-case-insensitive t)
 (setq eshell-cmpl-ignore-case t)
 
+;; SBCL
+(setq inferior-lisp-program "sbcl")
+
 ;; Turn off bell (Dracula theme makes this do nothing)
 (setq visible-bell t)
 
