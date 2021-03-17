@@ -160,3 +160,7 @@
 ;; Terraform Mode
 (use-package terraform-mode
   :straight t)
+
+;; YAML Mode
+(use-package yaml-mode
+  :straight t)
