@@ -164,3 +164,7 @@
 ;; YAML Mode
 (use-package yaml-mode
   :straight t)
+
+;; Sly (SBCL/Common Lisp)
+(use-package sly
+  :straight t)
