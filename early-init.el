@@ -30,10 +30,8 @@
 ;; cursor color is concerned).
 (advice-add #'x-apply-session-resources :override #'ignore)
 
-;; Prevent unwanted runtime builds in gccemacs (native-comp); packages are
-;; compiled ahead-of-time when they are installed and site files are compiled
-;; when gccemacs is installed.
-;;(setq comp-deferred-compilation nil)
+;; Let's not get blasted by tons of "warnings" from native-compilation.
+(setq warning-minimum-level :error)
 
 ;; Get rid of "Package cl is deprecated" warning
 (setq byte-compile-warnings '(cl-functions))
