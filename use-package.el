@@ -24,7 +24,7 @@
   :config
   (which-key-mode)
   :custom
-  (which-key-idle-delay 0.3))
+  (which-key-idle-delay 0))
 
 ;; Company Mode
 (use-package company-mode
