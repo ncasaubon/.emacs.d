@@ -115,6 +115,9 @@
 (load "~/.emacs.d/use-package.el")
 (load "~/.emacs.d/nrc-mode.el")
 
+;; Starting theme
+(load-theme 'doom-one t)
+
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
       gc-cons-percentage 0.1)
