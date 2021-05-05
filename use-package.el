@@ -8,10 +8,10 @@
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t))
 
-;; Unicode fonts
-(use-package unicode-fonts
-  :straight t
-  :config (unicode-fonts-setup))
+;; ;; Unicode fonts
+;; (use-package unicode-fonts
+;;   :straight t
+;;   :config (unicode-fonts-setup))
 
 ;; All the icons
 (use-package all-the-icons
@@ -27,9 +27,7 @@
 
 ;; Company Mode
 (use-package company-mode
-  :straight (company-mode
-             :host github
-             :repo "company-mode/company-mode")
+  :straight t
   :hook prog-mode)
 
 ;; Flycheck
@@ -43,8 +41,7 @@
 
 ;; Org
 (use-package org-mode
-  :straight (org-mode
-             :repo "https://code.orgmode.org/bzg/org-mode.git")
+  :straight t
   :defer t
   :custom
   (org-directory "~/.org/")
@@ -149,6 +146,7 @@
 ;; Recentf
 (use-package recentf
   :straight (:type built-in)
+  :defer t
   :config (recentf-mode +1))
 
 ;; Terraform Mode
