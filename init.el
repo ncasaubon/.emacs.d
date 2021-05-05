@@ -7,14 +7,16 @@
       gc-cons-percentage 0.6
       site-run-file nil)
 
-;; In noninteractive sessions, prioritize non-byte-compiled source files to
-;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
-;; to skip the mtime checks on every *.elc file.
-(setq load-prefer-newer noninteractive)
+;; Prefer the newer of *.el or corresponding *.elc bytecode elisp
+;; files.
+(setq load-prefer-newer t)
 
 ;;;; Emacs functionality and defaults
 ;; pLEaSe ANsWer yEs oR nO.
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; Enable all disabled commands
+(setq disabled-command-function nil)
 
 ;; Get rid of menus
 (menu-bar-mode 0)
