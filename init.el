@@ -24,28 +24,16 @@
     (progn (tool-bar-mode 0)
            (scroll-bar-mode 0)))
 
-;; Inhibit startup buffer with the Emacs logo
-(setq inhibit-startup-screen t)
-
-;; Remove scratch message
-(setq initial-major-mode 'fundamental-mode)
-(setq initial-scratch-message nil)
-
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
-;; Upcase/downcase region
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-
 ;; Eshell
-(setq eshell-glob-case-insensitive t)
 (setq eshell-cmpl-ignore-case t)
 
 ;; SBCL
 (setq inferior-lisp-program "sbcl")
 
-;; Turn off bell (Dracula theme makes this do nothing)
+;; Turn off bell
 (setq visible-bell t)
 
 ;; Scroll conservatively
