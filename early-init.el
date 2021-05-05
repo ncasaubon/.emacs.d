@@ -4,14 +4,15 @@
 ;; before package and UI initialization happens.
 
 ;; Defer garbage collection further back in the startup process
-(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6
+      site-run-file nil)
 
 ;; Force lexical bindings
 (setq lexical-binding t)
 
 ;; In Emacs 27+, package initialization occurs before `user-init-file' is
-;; loaded, but after `early-init-file'. Doom handles package initialization, so
-;; we must prevent Emacs from doing it early!
+;; loaded, but after `early-init-file'.
 (setq package-enable-at-startup nil)
 (advice-add #'package--ensure-init-file :override #'ignore)
 
@@ -36,6 +37,7 @@
 ;; Get rid of "Package cl is deprecated" warning
 (setq byte-compile-warnings '(cl-functions))
 
+;; Set font to Iosevka
 (set-face-attribute 'default nil
                     :height 170
                     :family "Iosevka")
