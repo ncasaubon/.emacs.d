@@ -86,31 +86,24 @@
       version-control     t
       delete-old-versions t)
 
-;;;; Packages
-;; straight.el bootstrapping
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+;; NRC Mode
+(load "~/.emacs.d/nrc-mode.el")
 
-;; use-package setup
-(straight-use-package 'use-package)
+;;;; Packages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; Bring in all packages
 (load "~/.emacs.d/use-package.el")
-(load "~/.emacs.d/nrc-mode.el")
 
 ;; Starting theme
-(load-theme 'doom-one-light t)
+(load-theme 'modus-operandi t)
 
 ;; Set GC back to default values
 (setq gc-cons-threshold 800000
       gc-cons-percentage 0.1)
+
+(custom-set-variables
+ '(package-selected-packages
+   '(auto-package-update company unicode-fonts sly yaml-mode terraform-mode restart-emacs vterm lsp-ui lsp-mode avy selectrum-prescient prescient ctrlf selectrum fd-dired dired-rsync diredfl magit org-mode yasnippet flycheck company-mode which-key all-the-icons doom-themes use-package)))
