@@ -1,6 +1,6 @@
 ;; Doom One
 (use-package doom-themes
-  :straight t
+  :ensure t
   :config
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
@@ -8,91 +8,78 @@
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t))
 
-;; ;; Unicode fonts
-;; (use-package unicode-fonts
-;;   :straight t
-;;   :config (unicode-fonts-setup))
+;; Unicode fonts
+(use-package unicode-fonts
+  :ensure t
+  :config (unicode-fonts-setup))
 
 ;; All the icons
 (use-package all-the-icons
-  :straight t)
+  :ensure t)
 
 ;; Which Key
 (use-package which-key
-  :straight t
+  :ensure t
   :config
   (which-key-mode)
   :custom
   (which-key-idle-delay 0))
 
 ;; Company Mode
-(use-package company-mode
-  :straight t
-  :hook prog-mode)
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode +1))
 
 ;; Flycheck
 (use-package flycheck
-  :straight t
+  :ensure t
   :defer t)
 
 ;; YASnippet
 (use-package yasnippet
-  :straight t)
-
-;; Org
-(use-package org-mode
-  :straight t
-  :defer t
-  :custom
-  (org-directory "~/.org/")
-  (org-ditaa-jar-path "/usr/bin/ditaa"))
-
-;; Display line numbers
-(use-package display-line-numbers-mode
-  :straight (:type built-in)
-  :hook prog-mode)
+  :ensure t)
 
 ;; Magit
 (use-package magit
-  :straight t
+  :ensure t
   :defer t)
 
 ;; Dired
 (use-package dired-x
-  :straight (:type built-in)
   :after dired)
 
 (use-package diredfl
-  :straight t
+  :ensure t
   :after dired
   :config
   (diredfl-global-mode +1))
 
 (use-package dired-rsync
-  :straight t
+  :ensure t
   :after dired
   :config
   (bind-key "C-c C-r" 'dired-rsync dired-mode-map))
 
 (use-package fd-dired
-  :straight t
+  :ensure t
   :after dired)
 
 ;; Selectrum
 (use-package selectrum
-  :straight t
+  :ensure t
   :config
   (selectrum-mode +1))
 
 ;; CTRLF
 (use-package ctrlf
-  :straight t
+  :ensure t
   :config
   (ctrlf-mode +1))
 
 ;; Prescient
 (use-package prescient
-  :straight t
+  :ensure t
   :config
   (prescient-persist-mode +1)
   :custom
@@ -100,19 +87,19 @@
 
 ;; Selectrum-Prescient
 (use-package selectrum-prescient
-  :straight t
+  :ensure t
   :after selectrum prescient
   :config
   (selectrum-prescient-mode +1))
 
 ;; Avy
 (use-package avy
-  :straight t
+  :ensure t
   :bind ("C-t" . avy-goto-char))
 
 ;; LSP
 (use-package lsp-mode
-  :straight t
+  :ensure t
   :defer t
   :hook (python-mode . lsp-deferred)
   :custom
@@ -121,14 +108,11 @@
   (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
-  :straight t
+  :ensure t
   :after lsp-mode
   :commands lsp-ui-mode)
 
 (use-package lsp-jedi
-  :straight (lsp-jedi
-             :host github
-             :repo "fredcamps/lsp-jedi")
   :after lsp-mode
   :config
   (with-eval-after-load "lsp-mode"
@@ -137,26 +121,33 @@
 
 ;; VTerm (needs --with-modules compilation support)
 (use-package vterm
-  :straight t)
+  :ensure t)
 
 ;; Restart Emacs
 (use-package restart-emacs
-  :straight t)
+  :ensure t)
 
 ;; Recentf
 (use-package recentf
-  :straight (:type built-in)
   :defer t
   :config (recentf-mode +1))
 
 ;; Terraform Mode
 (use-package terraform-mode
-  :straight t)
+  :ensure t)
 
 ;; YAML Mode
 (use-package yaml-mode
-  :straight t)
+  :ensure t)
 
 ;; Sly (SBCL/Common Lisp)
 (use-package sly
-  :straight t)
+  :ensure t)
+
+;; Auto-update Packages
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
