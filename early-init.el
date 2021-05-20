@@ -39,5 +39,5 @@
 
 ;; Set font to Iosevka
 (set-face-attribute 'default nil
-                    :height 170
+                    :height 135
                     :family "Iosevka")
