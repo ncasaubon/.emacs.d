@@ -13,8 +13,8 @@
 
 ;; In Emacs 27+, package initialization occurs before `user-init-file' is
 ;; loaded, but after `early-init-file'.
-(setq package-enable-at-startup nil)
-(advice-add #'package--ensure-init-file :override #'ignore)
+;(setq package-enable-at-startup nil)
+;(advice-add #'package--ensure-init-file :override #'ignore)
 
 ;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
 (push '(menu-bar-lines . 0) default-frame-alist)
