@@ -68,6 +68,9 @@
 ;; Redraw display
 (global-set-key (kbd "<f5>") 'redraw-display)
 
+;; Ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;;;; Backups
 ;; Make backups directory in ~/.emacs.d/
 (let ((--backup-directory (concat user-emacs-directory "backups")))
